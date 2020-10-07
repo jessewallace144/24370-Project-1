@@ -88,18 +88,28 @@ buckling_stress = [];
 
 for t = 1:length(thick)
      axial_stress(t) = (Fmax)./((w-d).*t);
-     I =(1/12)*(t*w^3); 
-     buckling_stress(t) = (C *(pi^2)*E*I)/(L1^2); 
+     buckling_stress(t) = (C *(pi^2)*E*(1/12)*(t*w^3))/(L1^2); 
 end  
 
 disp(axial_stress) 
-
-
+disp(buckling_stress) 
 
 
 
 %% Find Relationship Between Force and Theta
 
+
+
+
+
+%% Plots 
+
+scatter(thick, axial_stress, "filled")
+hold on 
+plot(thick, axial_stress) 
+xlabel("Material Thickness, inches") 
+ylabel("Calculated Axial Stress, psi") 
+title("NASA Airlock Design - Axial Stress vs Material Thickness") 
 
 
 

@@ -102,3 +102,20 @@ disp(buckling_stress)
 
 
 
+%% Plots 
+
+plot(thick, axial_stress, "r--", "LineWidth", 3)
+hold on
+sz = 50 
+s = scatter(thick, axial_stress, sz, "filled")
+s.LineWidth = 0.6;
+s.MarkerEdgeColor = 'b';
+s.MarkerFaceColor = [0 0.5 0.5];
+ 
+xlabel("Material Thickness, inches") 
+ylabel("Calculated Axial Stress, psi") 
+title("NASA Airlock Design - Axial Stress vs Material Thickness") 
+
+
+
+
