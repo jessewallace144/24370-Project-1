@@ -80,11 +80,7 @@ Mc = Vc*Lc+Fc*Lc;
 %plotting axial stress
 
 
-%Calculated Axial Stress Values 
-axial_stress = [];
-%Calculated Buckling Values 
-
-
+%Calculated Axial Stress Values,  
 for t = 1:length(thick)
      
 end  
