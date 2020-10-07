@@ -39,7 +39,7 @@ d = .31 ; % inches
 % Max Force 
 Fmax = 7; %lbs
 % Force at initial contact with button 
-Fmid = 0 ;
+Fmid = 7; %lbs 
 % Min Force 
 Fmin = 0; 
 %  Kt
@@ -98,12 +98,18 @@ disp(buckling_stress)
 
 %% Find Relationship Between Force and Theta
 
+thetaA = [30, 45, 60, 80, 90]; 
+Force_c = []; 
 
-
+for i = 1:length(thetaA)
+    thetaB = 90 - thetaA(i); 
+    Force_c(i) = (Fmid)/(sin(thetaB)+(tan(thetaB)*cos(thetaB)));
+end
 
 
 %% Plots 
 
+figure(1)
 plot(thick, axial_stress, "r--", "LineWidth", 3)
 hold on
 sz = 50 
@@ -116,6 +122,30 @@ xlabel("Material Thickness, inches")
 ylabel("Calculated Axial Stress, psi") 
 title("NASA Airlock Design - Axial Stress vs Material Thickness") 
 
+figure(2) 
+plot(thick, buckling_stress, "r--", "LineWidth", 3)
+hold on
+sz = 50 
+s = scatter(thick, buckling_stress, sz, "filled")
+s.LineWidth = 0.6;
+s.MarkerEdgeColor = 'b';
+s.MarkerFaceColor = [0 0.5 0.5];
+ 
+xlabel("Material Thickness, inches") 
+ylabel("Calculated Buckling Stress, psi") 
+title("NASA Airlock Design - Buckling Stress vs Material Thickness") 
 
 
+figure(3)
+plot(thetaA, Force_c, "r--", "LineWidth", 3)
+hold on
+sz = 50 
+s = scatter(thetaA, Force_c, sz, "filled")
+s.LineWidth = 0.6;
+s.MarkerEdgeColor = 'b';
+s.MarkerFaceColor = [0 0.5 0.5];
+ 
+xlabel("Angle, degrees") 
+ylabel("Calculated Force on Crank, psi") 
+title("NASA Airlock Design - Crank Force and Angle Relationship")
 
