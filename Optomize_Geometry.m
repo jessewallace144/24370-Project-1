@@ -24,7 +24,7 @@ thetaB = 0;
 % Theta C
 thetaC = 0;
 % thickness
-thick = [(1/8),(3/16),(1/4),(1/8),(1/4)]; %inches
+thick = [(1/8),(3/16),(1/4)]; %inches
 t = 3/16; %inches 
 % width
 w = .51; %inches
@@ -82,15 +82,17 @@ Mc = Vc*Lc+Fc*Lc;
 
 %Calculated Axial Stress Values 
 axial_stress = [];
-%Calculated Buckling Values 
 
+%Calculated Buckling Values 
+buckling_stress = []; 
 
 for t = 1:length(thick)
-     
+     axial_stress(t) = (Fmax)./((w-d).*t);
+     buckling_stress(t) = (C *(pi^2)*E*(1/12)*(t*w^3))/(L1^2); 
 end  
 
-
-
+disp(axial_stress) 
+disp(buckling_stress) 
 
 
 
